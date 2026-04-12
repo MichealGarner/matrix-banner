@@ -47,15 +47,15 @@ Call trans opt: received. 12-04-26 14:32:07 REC:Loc
   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═════╝
 
   ╔══════════════════════════════════════════════════════════════╗
-  ║               !! AUTHORISED ACCESS ONLY !!                  ║
+  ║               !! AUTHORISED ACCESS ONLY !!                   ║
   ╠══════════════════════════════════════════════════════════════╣
   ║  This system is privately owned and monitored continuously.  ║
   ║  All connections, commands, and file activity are logged.    ║
   ║  Unauthorised access will be investigated and prosecuted     ║
-  ║  under the Computer Misuse Act 1990 (UK).                   ║
+  ║  under the Computer Misuse Act 1990 (UK).                    ║
   ║                                                              ║
-  ║       I check logs.  I hold a grudge.  You have been        ║
-  ║                    w a r n e d .                            ║
+  ║       I check logs.  I hold a grudge.  You have been         ║
+  ║                    w a r n e d .                             ║
   ╚══════════════════════════════════════════════════════════════╝
 
   ┌─[ SYSTEM STATUS ]──────────────────────────────────────────┐
