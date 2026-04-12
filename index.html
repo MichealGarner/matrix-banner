@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loe Sauna – Coastal Community Sauna, Feock, Cornwall</title>
+<meta name="description" content="A hand-crafted coastal sauna experience on the shores of Loe Beach, Feock, Cornwall. Book your session today.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sand: #C8B99A;
+    --sand-light: #EDE4D6;
+    --sand-pale: #F7F2EA;
+    --ember: #8B3A1C;
+    --ember-deep: #5C2510;
+    --birch: #2C2218;
+    --mist: #6B7B72;
+    --steam: #D6DDD8;
+    --white: #FDFBF8;
+    --font-display: 'Cormorant Garamond', serif;
+    --font-body: 'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--birch);
+    font-family: var(--font-body);
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.25rem 3rem;
+    background: rgba(253,251,248,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(200,185,154,0.3);
+    transition: padding 0.3s;
+  }
+  .nav-logo {
+    display: flex; align-items: center; gap: 0.75rem; text-decoration: none;
+  }
+  .nav-logo-mark {
+    width: 36px; height: 36px;
+  }
+  .nav-logo-text {
+    font-family: var(--font-display);
+    font-size: 1.2rem; font-weight: 600; letter-spacing: 0.05em;
+    color: var(--birch); line-height: 1.2;
+  }
+  .nav-logo-sub {
+    font-family: var(--font-body);
+    font-size: 0.6rem; font-weight: 400; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--mist);
+    display: block;
+  }
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none;
+  }
+  .nav-links a {
+    text-decoration: none; color: var(--birch);
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    font-weight: 400;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--ember); }
+  .nav-book {
+    background: var(--ember);
+    color: var(--white) !important;
+    padding: 0.55rem 1.4rem !important;
+    letter-spacing: 0.12em !important;
+    transition: background 0.2s !important;
+  }
+  .nav-book:hover { background: var(--ember-deep) !important; color: var(--white) !important; }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+  .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--birch); transition: 0.3s; }
+
+  /* ─── HERO ─── */
+  .hero {
+    height: 100vh; min-height: 600px;
+    display: grid; grid-template-columns: 1fr 1fr;
+    padding-top: 80px;
+    overflow: hidden;
+  }
+  .hero-left {
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 5rem 4rem 5rem 6rem;
+    background: var(--sand-pale);
+    position: relative;
+  }
+  .hero-left::before {
+    content: '';
+    position: absolute; top: 0; right: -1px; bottom: 0; width: 60px;
+    background: var(--sand-pale);
+    clip-path: polygon(0 0, 0% 100%, 100% 100%);
+    z-index: 2;
+  }
+  .hero-eyebrow {
+    font-size: 0.65rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--ember); font-weight: 400; margin-bottom: 1.2rem;
+    font-family: var(--font-body);
+  }
+  .hero-title {
+    font-family: var(--font-display);
+    font-size: clamp(3rem, 5vw, 4.5rem);
+    font-weight: 300; line-height: 1.1;
+    color: var(--birch); margin-bottom: 1.5rem;
+  }
+  .hero-title em { font-style: italic; color: var(--ember); }
+  .hero-body {
+    font-size: 1rem; color: var(--mist); max-width: 38ch;
+    line-height: 1.8; margin-bottom: 2.5rem;
+  }
+  .hero-ctas { display: flex; gap: 1rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; text-decoration: none;
+    font-family: var(--font-body); font-weight: 400;
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    padding: 0.9rem 2rem; transition: all 0.2s; cursor: pointer;
+    border: none;
+  }
+  .btn-primary {
+    background: var(--ember); color: var(--white);
+  }
+  .btn-primary:hover { background: var(--ember-deep); }
+  .btn-outline {
+    background: transparent; color: var(--birch);
+    border: 1px solid var(--sand);
+  }
+  .btn-outline:hover { border-color: var(--ember); color: var(--ember); }
+  .hero-photo {
+    position: relative; overflow: hidden;
+  }
+  .hero-photo img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(0.85);
+    animation: heroReveal 1.2s ease forwards;
+  }
+  .hero-photo-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to right, rgba(247,242,234,0.2) 0%, transparent 30%);
+  }
+  @keyframes heroReveal {
+    from { opacity: 0; transform: scale(1.04); }
+    to { opacity: 1; transform: scale(1); }
+  }
+  .hero-scroll {
+    position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    z-index: 10;
+  }
+  .hero-scroll span {
+    font-size: 0.6rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--mist);
+  }
+  .hero-scroll-line {
+    width: 1px; height: 40px; background: var(--sand);
+    animation: scrollDrop 2s ease-in-out infinite;
+  }
+  @keyframes scrollDrop {
+    0%, 100% { transform: scaleY(1); opacity: 1; }
+    50% { transform: scaleY(0.5); opacity: 0.4; }
+  }
+
+  /* ─── SECTION SHARED ─── */
+  section { padding: 6rem 0; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 3rem; }
+  .section-label {
+    font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--ember); font-weight: 400; margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 300; line-height: 1.15; color: var(--birch);
+  }
+  .section-title em { font-style: italic; color: var(--ember); }
+
+  /* ─── ABOUT / FEATURES ─── */
+  .about { background: var(--white); }
+  .about-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 5rem; align-items: center; margin-top: 4rem;
+  }
+  .about-image {
+    position: relative;
+  }
+  .about-image img {
+    width: 100%; aspect-ratio: 3/4; object-fit: cover;
+    filter: saturate(0.85);
+  }
+  .about-image-accent {
+    position: absolute; bottom: -1.5rem; right: -1.5rem;
+    width: 60%; height: 60%;
+    border: 2px solid var(--sand);
+    z-index: -1;
+  }
+  .about-content { }
+  .about-body {
+    font-size: 1rem; line-height: 1.9; color: var(--mist);
+    margin: 1.5rem 0 2.5rem;
+  }
+  .about-stats {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 0; border-top: 1px solid var(--sand-light);
+    padding-top: 2rem; margin-top: 2rem;
+  }
+  .stat { padding: 0 1.5rem 0 0; border-right: 1px solid var(--sand-light); }
+  .stat:first-child { padding-left: 0; }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-family: var(--font-display);
+    font-size: 2.5rem; font-weight: 300; color: var(--ember); line-height: 1;
+  }
+  .stat-label {
+    font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--mist); margin-top: 0.3rem;
+  }
+
+  /* ─── EXPERIENCE STRIP ─── */
+  .experience {
+    background: var(--birch); color: var(--white);
+    padding: 6rem 0;
+  }
+  .experience .section-label { color: var(--sand); }
+  .experience .section-title { color: var(--white); }
+  .experience-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; margin-top: 4rem;
+    border: 1px solid rgba(200,185,154,0.2);
+  }
+  .exp-card {
+    padding: 2.5rem 2rem;
+    border-right: 1px solid rgba(200,185,154,0.2);
+    transition: background 0.3s;
+  }
+  .exp-card:last-child { border-right: none; }
+  .exp-card:hover { background: rgba(200,185,154,0.08); }
+  .exp-icon {
+    width: 40px; height: 40px; margin-bottom: 1.5rem;
+    opacity: 0.7;
+  }
+  .exp-title {
+    font-family: var(--font-display);
+    font-size: 1.3rem; font-weight: 400; color: var(--sand-light);
+    margin-bottom: 0.75rem;
+  }
+  .exp-body {
+    font-size: 0.85rem; line-height: 1.8; color: rgba(214,221,216,0.7);
+  }
+
+  /* ─── GALLERY ─── */
+  .gallery { background: var(--sand-pale); }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 280px 280px;
+    gap: 12px; margin-top: 3rem;
+  }
+  .gallery-item { overflow: hidden; }
+  .gallery-item img {
+    width: 100%; height: 100%; object-fit: cover;
+    filter: saturate(0.8);
+    transition: transform 0.6s ease, filter 0.4s;
+  }
+  .gallery-item:hover img { transform: scale(1.04); filter: saturate(1); }
+  .gallery-item.large { grid-row: 1 / 3; }
+
+  /* ─── BOOKING ─── */
+  .booking { background: var(--white); }
+  .booking-inner {
+    display: grid; grid-template-columns: 1fr 1.2fr;
+    gap: 5rem; align-items: start; margin-top: 4rem;
+  }
+  .booking-info { }
+  .booking-info p {
+    font-size: 0.95rem; line-height: 1.9; color: var(--mist); margin: 1.5rem 0 2rem;
+  }
+  .pricing-cards { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+  .pricing-card {
+    border: 1px solid var(--sand-light); padding: 1.25rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    transition: border-color 0.2s;
+  }
+  .pricing-card:hover { border-color: var(--ember); }
+  .pricing-card-name {
+    font-family: var(--font-display); font-size: 1.2rem; font-weight: 400;
+  }
+  .pricing-card-detail {
+    font-size: 0.75rem; color: var(--mist); letter-spacing: 0.05em;
+  }
+  .pricing-card-price {
+    font-family: var(--font-display); font-size: 1.8rem;
+    font-weight: 300; color: var(--ember);
+  }
+
+  /* ─── BOOKING FORM ─── */
+  .booking-form {
+    background: var(--sand-pale); padding: 2.5rem;
+  }
+  .form-title {
+    font-family: var(--font-display); font-size: 1.6rem;
+    font-weight: 400; margin-bottom: 1.75rem; color: var(--birch);
+  }
+  .form-group { margin-bottom: 1.25rem; }
+  .form-label {
+    display: block; font-size: 0.65rem; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--mist); margin-bottom: 0.5rem;
+  }
+  .form-control {
+    width: 100%;
+    background: var(--white); border: 1px solid var(--sand);
+    padding: 0.75rem 1rem; font-family: var(--font-body);
+    font-size: 0.9rem; font-weight: 300; color: var(--birch);
+    outline: none; transition: border-color 0.2s;
+    appearance: none; -webkit-appearance: none;
+  }
+  .form-control:focus { border-color: var(--ember); }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  .session-slots {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 0.5rem;
+    margin-top: 0.5rem;
+  }
+  .slot {
+    padding: 0.6rem 0.25rem; text-align: center;
+    font-size: 0.8rem; border: 1px solid var(--sand);
+    cursor: pointer; transition: all 0.2s; background: var(--white);
+    color: var(--birch);
+  }
+  .slot:hover:not(.unavailable) { border-color: var(--ember); color: var(--ember); }
+  .slot.selected { background: var(--ember); color: var(--white); border-color: var(--ember); }
+  .slot.unavailable { opacity: 0.35; cursor: not-allowed; background: var(--steam); }
+  .slot-label { font-size: 0.6rem; letter-spacing: 0.05em; color: inherit; display: block; margin-top: 2px; }
+  .waiver-check {
+    display: flex; gap: 0.75rem; align-items: flex-start;
+    margin: 1.25rem 0;
+  }
+  .waiver-check input { margin-top: 3px; accent-color: var(--ember); }
+  .waiver-check label {
+    font-size: 0.8rem; color: var(--mist); line-height: 1.6;
+  }
+  .waiver-check a { color: var(--ember); }
+  .form-total {
+    display: flex; justify-content: space-between; align-items: baseline;
+    border-top: 1px solid var(--sand); padding-top: 1rem; margin-top: 1rem;
+  }
+  .form-total-label { font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--mist); }
+  .form-total-price { font-family: var(--font-display); font-size: 2rem; color: var(--birch); }
+  .form-submit {
+    width: 100%; margin-top: 1rem; padding: 1rem;
+    background: var(--ember); color: var(--white);
+    border: none; font-family: var(--font-body); font-size: 0.75rem;
+    letter-spacing: 0.2em; text-transform: uppercase; cursor: pointer;
+    transition: background 0.2s;
+  }
+  .form-submit:hover { background: var(--ember-deep); }
+
+  /* Calendar days */
+  .calendar-bar {
+    display: flex; gap: 0.4rem; margin-top: 0.5rem; overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+  .cal-day {
+    flex: 0 0 auto; width: 52px; text-align: center;
+    border: 1px solid var(--sand); padding: 0.5rem 0.25rem;
+    cursor: pointer; transition: all 0.2s; background: var(--white);
+  }
+  .cal-day:hover:not(.closed) { border-color: var(--ember); }
+  .cal-day.selected { background: var(--ember); border-color: var(--ember); color: var(--white); }
+  .cal-day.closed { opacity: 0.3; cursor: not-allowed; }
+  .cal-day-name { font-size: 0.6rem; letter-spacing: 0.1em; text-transform: uppercase; display: block; color: inherit; }
+  .cal-day-num { font-family: var(--font-display); font-size: 1.2rem; font-weight: 300; display: block; line-height: 1.2; color: inherit; }
+
+  /* ─── LOCATION ─── */
+  .location-section { background: var(--birch); color: var(--white); }
+  .location-section .section-label { color: var(--sand); }
+  .location-section .section-title { color: var(--white); }
+  .location-grid {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 4rem; margin-top: 4rem; align-items: start;
+  }
+  .location-body { font-size: 0.95rem; color: rgba(214,221,216,0.75); line-height: 1.9; margin-top: 1.5rem; }
+  .location-details { margin-top: 2rem; }
+  .location-detail {
+    display: flex; gap: 1rem; align-items: flex-start;
+    padding: 1rem 0; border-bottom: 1px solid rgba(200,185,154,0.15);
+  }
+  .location-detail:first-child { border-top: 1px solid rgba(200,185,154,0.15); }
+  .loc-icon { opacity: 0.5; flex-shrink: 0; margin-top: 3px; }
+  .loc-detail-title { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sand); }
+  .loc-detail-val { font-size: 0.9rem; color: rgba(214,221,216,0.8); margin-top: 0.15rem; }
+  .map-placeholder {
+    background: rgba(200,185,154,0.1); aspect-ratio: 4/3;
+    display: flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(200,185,154,0.2);
+    overflow: hidden;
+  }
+  .map-placeholder iframe { width: 100%; height: 100%; border: 0; filter: grayscale(0.4) contrast(0.9); }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ember-deep); color: rgba(247,242,234,0.6);
+    padding: 3rem 0;
+  }
+  .footer-inner {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-logo {
+    font-family: var(--font-display); font-size: 1.2rem; font-weight: 400;
+    color: var(--sand-light); letter-spacing: 0.05em;
+  }
+  .footer-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+  .footer-links a {
+    text-decoration: none; color: rgba(247,242,234,0.55);
+    font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .footer-links a:hover { color: var(--sand-light); }
+  .footer-copy { font-size: 0.7rem; letter-spacing: 0.05em; }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(44,34,24,0.7); z-index: 1000;
+    align-items: center; justify-content: center;
+    padding: 2rem;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white); max-width: 480px; width: 100%;
+    padding: 3rem; position: relative;
+  }
+  .modal-close {
+    position: absolute; top: 1.25rem; right: 1.25rem;
+    background: none; border: none; font-size: 1.5rem; cursor: pointer;
+    color: var(--mist); line-height: 1;
+  }
+  .modal h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 300; margin-bottom: 1rem; }
+  .modal p { font-size: 0.9rem; line-height: 1.8; color: var(--mist); margin-bottom: 1rem; }
+  .modal .btn { margin-top: 1rem; }
+
+  /* ─── TOAST ─── */
+  .toast {
+    position: fixed; bottom: 2rem; right: 2rem;
+    background: var(--birch); color: var(--white);
+    padding: 1rem 1.5rem; font-size: 0.85rem;
+    transform: translateY(100px); opacity: 0;
+    transition: all 0.4s; z-index: 2000;
+    max-width: 320px;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* ─── ANIMATIONS ─── */
+  .fade-in {
+    opacity: 0; transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; flex-direction: column; }
+    .nav-links.open { display: flex; position: fixed; top: 65px; left: 0; right: 0; background: var(--white); padding: 2rem; border-bottom: 1px solid var(--sand-light); gap: 1.5rem; }
+    .hamburger { display: flex; }
+    .hero { grid-template-columns: 1fr; height: auto; }
+    .hero-left { padding: 4rem 2rem 3rem; }
+    .hero-left::before { display: none; }
+    .hero-photo { aspect-ratio: 16/9; }
+    .about-grid, .booking-inner, .location-grid { grid-template-columns: 1fr; gap: 3rem; }
+    .experience-grid { grid-template-columns: 1fr 1fr; }
+    .gallery-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gallery-item.large { grid-row: auto; }
+    .container { padding: 0 1.5rem; }
+    section { padding: 4rem 0; }
+    .about-image-accent { display: none; }
+  }
+  @media (max-width: 560px) {
+    .experience-grid { grid-template-columns: 1fr; }
+    .gallery-grid { grid-template-columns: 1fr; }
+    .about-stats { grid-template-columns: 1fr 1fr; }
+    .stat:last-child { border-right: 1px solid var(--sand-light); }
+    .form-row { grid-template-columns: 1fr; }
+    .session-slots { grid-template-columns: repeat(3, 1fr); }
+    .footer-inner { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">
+    <svg class="nav-logo-mark" viewBox="0 0 36 36" fill="none">
+      <circle cx="18" cy="18" r="17" stroke="#8B3A1C" stroke-width="1"/>
+      <path d="M18 8 C18 8 10 14 10 20 C10 24.4 13.6 28 18 28 C22.4 28 26 24.4 26 20 C26 14 18 8 18 8Z" fill="#8B3A1C" fill-opacity="0.15"/>
+      <path d="M18 12 C18 12 13 17 13 21 C13 23.8 15.2 26 18 26 C20.8 26 23 23.8 23 21 C23 17 18 12 18 12Z" fill="#8B3A1C" fill-opacity="0.4"/>
+      <line x1="18" y1="6" x2="18" y2="30" stroke="#8B3A1C" stroke-width="0.5" stroke-opacity="0.3"/>
+    </svg>
+    <span class="nav-logo-text">
+      Loe Sauna
+      <span class="nav-logo-sub">Feock · Cornwall</span>
+    </span>
+  </a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#book" class="nav-book btn">Book Now</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="top">
+  <div class="hero-left">
+    <p class="hero-eyebrow">Loe Beach, Feock, Cornwall</p>
+    <h1 class="hero-title">
+      Heat.<br>
+      <em>Breathe.</em><br>
+      Restore.
+    </h1>
+    <p class="hero-body">
+      A hand-crafted coastal sauna experience on the shores of the Fal Estuary.
+      Step away from the world, feel the heat, and emerge renewed.
+    </p>
+    <div class="hero-ctas">
+      <a href="#book" class="btn btn-primary">Reserve a Session</a>
+      <a href="#about" class="btn btn-outline">Our Story</a>
+    </div>
+  </div>
+  <div class="hero-photo">
+    <img src="https://images.squarespace-cdn.com/content/v1/68d2357fbf41d0207e8cc42e/73ea88c8-1691-4bce-80a1-e8d1ea2cc749/a0a6fa50-9bd4-47e9-8821-6bb913b1e834.jpeg"
+         alt="Loe Sauna on the Cornish coast" loading="lazy">
+    <div class="hero-photo-overlay"></div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="container">
+    <div class="about-grid fade-in">
+      <div class="about-image">
+        <img src="https://images.squarespace-cdn.com/content/v1/68d2357fbf41d0207e8cc42e/4821f282-ab1c-40c0-a1c5-baa2d41bab4b/processed-F2E02901-A1A5-49B9-A77A-D30A5D9300B6.jpeg"
+             alt="Inside Loe Sauna" loading="lazy">
+        <div class="about-image-accent"></div>
+      </div>
+      <div class="about-content">
+        <p class="section-label">Our Story</p>
+        <h2 class="section-title">A <em>community</em> sauna for the Cornish coast</h2>
+        <p class="about-body">
+          Born from a love of wild swimming and ancient bathing traditions, Loe Sauna sits
+          at the edge of Loe Beach on the beautiful Fal Estuary. We built this sauna for the
+          community — a place to gather, recover, and reconnect with the natural world around you.
+        </p>
+        <p class="about-body" style="margin-top: -1rem;">
+          Each session is 45 minutes of pure, dry heat. Step outside and cool in the sea breeze.
+          Come alone, with friends, or meet fellow sauna lovers on the shore.
+        </p>
+        <div class="about-stats">
+          <div class="stat">
+            <div class="stat-num">80°</div>
+            <div class="stat-label">Temperature</div>
+          </div>
+          <div class="stat" style="padding-left: 1.5rem;">
+            <div class="stat-num">45'</div>
+            <div class="stat-label">Per session</div>
+          </div>
+          <div class="stat" style="padding-left: 1.5rem;">
+            <div class="stat-num">8</div>
+            <div class="stat-label">Max guests</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience" id="experience">
+  <div class="container">
+    <p class="section-label fade-in">The Experience</p>
+    <h2 class="section-title fade-in">Everything you <em>need, nothing</em> you don't</h2>
+    <div class="experience-grid fade-in">
+      <div class="exp-card">
+        <svg class="exp-icon" viewBox="0 0 40 40" fill="none">
+          <path d="M20 6 C20 6 8 15 8 24 C8 30.6 13.4 36 20 36 C26.6 36 32 30.6 32 24 C32 15 20 6 20 6Z" stroke="#C8B99A" stroke-width="1" fill="none"/>
+          <path d="M14 20 Q20 16 26 20 Q20 26 14 20Z" fill="#C8B99A" fill-opacity="0.4"/>
+        </svg>
+        <h3 class="exp-title">Wood-fired heat</h3>
+        <p class="exp-body">Kiln-dried birch keeps our sauna at a steady 75–85°C. Dry, enveloping warmth that eases muscle tension from the first minute.</p>
+      </div>
+      <div class="exp-card">
+        <svg class="exp-icon" viewBox="0 0 40 40" fill="none">
+          <circle cx="20" cy="20" r="12" stroke="#C8B99A" stroke-width="1" fill="none"/>
+          <path d="M12 20 Q16 12 20 20 Q24 28 28 20" stroke="#C8B99A" stroke-width="1" fill="none"/>
+        </svg>
+        <h3 class="exp-title">Sea air & views</h3>
+        <p class="exp-body">Step outside between rounds and breathe the salt air of the Fal Estuary. The contrast of heat and cool coastal breeze is restorative.</p>
+      </div>
+      <div class="exp-card">
+        <svg class="exp-icon" viewBox="0 0 40 40" fill="none">
+          <rect x="10" y="14" width="20" height="16" rx="1" stroke="#C8B99A" stroke-width="1" fill="none"/>
+          <path d="M15 14 L15 10 Q20 7 25 10 L25 14" stroke="#C8B99A" stroke-width="1" fill="none"/>
+        </svg>
+        <h3 class="exp-title">Inclusive sessions</h3>
+        <p class="exp-body">Sessions welcome all abilities. Small groups of up to 8 keep things intimate. Private hire is available for special occasions.</p>
+      </div>
+      <div class="exp-card">
+        <svg class="exp-icon" viewBox="0 0 40 40" fill="none">
+          <path d="M10 32 L10 16 L20 10 L30 16 L30 32" stroke="#C8B99A" stroke-width="1" fill="none"/>
+          <rect x="16" y="22" width="8" height="10" stroke="#C8B99A" stroke-width="1" fill="none"/>
+        </svg>
+        <h3 class="exp-title">Easy to find</h3>
+        <p class="exp-body">Located at Loe Beach, Feock — just off the A39 south of Truro. Ample parking. A short beautiful walk to the water's edge.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="container">
+    <p class="section-label fade-in">Gallery</p>
+    <h2 class="section-title fade-in">Life at the <em>water's edge</em></h2>
+    <div class="gallery-grid fade-in">
+      <div class="gallery-item large">
+        <img src="https://images.squarespace-cdn.com/content/v1/68d2357fbf41d0207e8cc42e/4821f282-ab1c-40c0-a1c5-baa2d41bab4b/processed-F2E02901-A1A5-49B9-A77A-D30A5D9300B6.jpeg"
+             alt="Loe Sauna interior" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/68d2357fbf41d0207e8cc42e/73ea88c8-1691-4bce-80a1-e8d1ea2cc749/a0a6fa50-9bd4-47e9-8821-6bb913b1e834.jpeg"
+             alt="Coastal sauna view" loading="lazy">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/68d2357fbf41d0207e8cc42e/4821f282-ab1c-40c0-a1c5-baa2d41bab4b/processed-F2E02901-A1A5-49B9-A77A-D30A5D9300B6.jpeg"
+             alt="Sauna experience" loading="lazy" style="object-position: top">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/68d2357fbf41d0207e8cc42e/73ea88c8-1691-4bce-80a1-e8d1ea2cc749/a0a6fa50-9bd4-47e9-8821-6bb913b1e834.jpeg"
+             alt="Loe Beach Cornwall" loading="lazy" style="object-position: bottom">
+      </div>
+      <div class="gallery-item">
+        <img src="https://images.squarespace-cdn.com/content/v1/68d2357fbf41d0207e8cc42e/4821f282-ab1c-40c0-a1c5-baa2d41bab4b/processed-F2E02901-A1A5-49B9-A77A-D30A5D9300B6.jpeg"
+             alt="Sauna warmth" loading="lazy" style="object-position: center 30%">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="book">
+  <div class="container">
+    <p class="section-label fade-in">Book a Session</p>
+    <h2 class="section-title fade-in">Reserve your <em>heat</em></h2>
+    <div class="booking-inner fade-in">
+      <div class="booking-info">
+        <p>Sessions run for 45 minutes, starting on the hour. Select a date, choose your time, and pay securely online. You'll receive a confirmation by email.</p>
+        <div class="pricing-cards">
+          <div class="pricing-card">
+            <div>
+              <div class="pricing-card-name">Single Session</div>
+              <div class="pricing-card-detail">45 mins · up to 8 guests</div>
+            </div>
+            <div class="pricing-card-price">£15</div>
+          </div>
+          <div class="pricing-card">
+            <div>
+              <div class="pricing-card-name">Private Hire</div>
+              <div class="pricing-card-detail">45 mins · exclusive use</div>
+            </div>
+            <div class="pricing-card-price">£80</div>
+          </div>
+          <div class="pricing-card">
+            <div>
+              <div class="pricing-card-name">Season Pass</div>
+              <div class="pricing-card-detail">10 sessions · save 20%</div>
+            </div>
+            <div class="pricing-card-price">£120</div>
+          </div>
+        </div>
+        <p style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--mist);">
+          ✦ &nbsp;Please read our <a href="#" style="color: var(--ember);">health waiver</a> before booking.<br>
+          ✦ &nbsp;Cancellations accepted up to 24 hours before your session.<br>
+          ✦ &nbsp;Children under 16 must be accompanied by an adult.
+        </p>
+      </div>
+      <div class="booking-form">
+        <p class="form-title">Reserve your session</p>
+
+        <div class="form-group">
+          <label class="form-label">Select a date</label>
+          <div class="calendar-bar" id="calendarBar"></div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Available times</label>
+          <div class="session-slots" id="sessionSlots"></div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First name</label>
+            <input type="text" class="form-control" placeholder="Jane">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last name</label>
+            <input type="text" class="form-control" placeholder="Smith">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Email address</label>
+          <input type="email" class="form-control" placeholder="jane@example.com">
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Number of guests</label>
+          <select class="form-control" id="guestCount" onchange="updateTotal()">
+            <option value="1">1 guest — £15</option>
+            <option value="2">2 guests — £30</option>
+            <option value="3">3 guests — £45</option>
+            <option value="4">4 guests — £60</option>
+            <option value="5">5 guests — £75</option>
+            <option value="6">6 guests — £90</option>
+            <option value="7">7 guests — £105</option>
+            <option value="8">8 guests — £120</option>
+          </select>
+        </div>
+
+        <div class="waiver-check">
+          <input type="checkbox" id="waiver">
+          <label for="waiver">I have read and agree to the <a href="#">health waiver & privacy policy</a>. I confirm I have no medical conditions that would prevent safe sauna use.</label>
+        </div>
+
+        <div class="form-total">
+          <span class="form-total-label">Total due</span>
+          <span class="form-total-price" id="totalPrice">£15.00</span>
+        </div>
+
+        <button class="form-submit" onclick="handleBooking()">Proceed to Payment →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LOCATION -->
+<section class="location-section" id="location">
+  <div class="container">
+    <p class="section-label fade-in">Find Us</p>
+    <h2 class="section-title fade-in">On the shores of <em>Feock</em></h2>
+    <div class="location-grid fade-in">
+      <div>
+        <p class="location-body">
+          We're tucked away on Loe Beach in the village of Feock, a short drive south of Truro
+          along the Fal Estuary. Look for the wooden structure at the water's edge — you'll smell
+          the birch smoke before you see us.
+        </p>
+        <div class="location-details">
+          <div class="location-detail">
+            <svg class="loc-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M8 1.5C5.5 1.5 3.5 3.5 3.5 6C3.5 9.5 8 14.5 8 14.5C8 14.5 12.5 9.5 12.5 6C12.5 3.5 10.5 1.5 8 1.5Z" stroke="#C8B99A" stroke-width="1"/>
+              <circle cx="8" cy="6" r="1.5" stroke="#C8B99A" stroke-width="1"/>
+            </svg>
+            <div>
+              <div class="loc-detail-title">Address</div>
+              <div class="loc-detail-val">Loe Beach, Feock, Cornwall, TR3 6SH</div>
+            </div>
+          </div>
+          <div class="location-detail">
+            <svg class="loc-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <circle cx="8" cy="8" r="6.5" stroke="#C8B99A" stroke-width="1"/>
+              <path d="M8 4.5V8.5L10.5 10.5" stroke="#C8B99A" stroke-width="1"/>
+            </svg>
+            <div>
+              <div class="loc-detail-title">Opening hours</div>
+              <div class="loc-detail-val">Fri–Sun, 9am–5pm (sessions on the hour)</div>
+            </div>
+          </div>
+          <div class="location-detail">
+            <svg class="loc-icon" width="16" height="16" viewBox="0 0 16 16" fill="none">
+              <path d="M3 3.5 C3 3.5 5 2 7 4 C7 4 5.5 6 6 7 C6.5 8 9 10.5 10 10.5 C11 10.5 13 9 13 9 C13 9 14.5 11 13 13 C11.5 15 4 9 3 7 C2 5 3 3.5 3 3.5Z" stroke="#C8B99A" stroke-width="1" fill="none"/>
+            </svg>
+            <div>
+              <div class="loc-detail-title">Contact</div>
+              <div class="loc-detail-val">hello@loebeachsauna.co.uk</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="map-placeholder">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2577.9!2d-5.049!3d50.196!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNTDCsDExJzQ2LjAiTiA1wrAwMicxOS4yIlc!5e0!3m2!1sen!2suk!4v1"
+          allowfullscreen="" loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Loe Beach location">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-logo">Loe Sauna</div>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#book">Book</a>
+      <a href="#location">Find us</a>
+      <a href="#">Health Waiver</a>
+      <a href="#">Privacy Policy</a>
+    </div>
+    <div class="footer-copy">© 2025 Loe Sauna. Loe Beach, Feock, Cornwall.</div>
+  </div>
+</footer>
+
+<!-- MODAL: payment stub -->
+<div class="modal-overlay" id="payModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2>Secure Payment</h2>
+    <p>This is a proof-of-concept demo. In the live site, Stripe will appear here to securely collect payment — no card data ever touches our servers.</p>
+    <p style="font-size: 0.8rem; background: var(--sand-pale); padding: 1rem; color: var(--mist);">
+      <strong>Booking summary:</strong><br>
+      <span id="modalSummary"></span>
+    </p>
+    <button class="btn btn-primary" onclick="confirmDemo()" style="width: 100%; text-align: center;">
+      Simulate Booking Confirmed →
+    </button>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  ✓ &nbsp;Booking confirmed! A confirmation email is on its way.
+</div>
+
+<script>
+// ─── Calendar generation
+const openDays = [5,6,0]; // Fri=5, Sat=6, Sun=0
+const slots = ['10:00','11:00','12:00','13:00','14:00','15:00','16:00'];
+const unavailable = ['11:00','14:00'];
+let selectedDate = null, selectedSlot = null;
+
+function buildCalendar() {
+  const bar = document.getElementById('calendarBar');
+  const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  const now = new Date();
+  for (let i = 1; i <= 14; i++) {
+    const d = new Date(now); d.setDate(now.getDate() + i);
+    const dow = d.getDay();
+    const open = openDays.includes(dow);
+    const el = document.createElement('div');
+    el.className = 'cal-day' + (open ? '' : ' closed');
+    el.innerHTML = `<span class="cal-day-name">${days[dow]}</span><span class="cal-day-num">${d.getDate()}</span>`;
+    if (open) {
+      el.onclick = () => selectDate(el, d);
+    }
+    bar.appendChild(el);
+  }
+}
+
+function selectDate(el, d) {
+  document.querySelectorAll('.cal-day').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedDate = d; selectedSlot = null;
+  buildSlots();
+}
+
+function buildSlots() {
+  const container = document.getElementById('sessionSlots');
+  container.innerHTML = '';
+  slots.forEach(s => {
+    const avail = !unavailable.includes(s);
+    const el = document.createElement('div');
+    el.className = 'slot' + (avail ? '' : ' unavailable');
+    el.innerHTML = `${s}<span class="slot-label">${avail ? 'Available' : 'Full'}</span>`;
+    if (avail) el.onclick = () => selectSlot(el, s);
+    container.appendChild(el);
+  });
+}
+
+function selectSlot(el, s) {
+  document.querySelectorAll('.slot').forEach(c => c.classList.remove('selected'));
+  el.classList.add('selected');
+  selectedSlot = s;
+}
+
+function updateTotal() {
+  const n = parseInt(document.getElementById('guestCount').value);
+  document.getElementById('totalPrice').textContent = `£${(n * 15).toFixed(2)}`;
+}
+
+function handleBooking() {
+  if (!selectedDate || !selectedSlot) {
+    alert('Please select a date and time slot first.');
+    return;
+  }
+  const n = document.getElementById('guestCount').value;
+  const total = (parseInt(n) * 15).toFixed(2);
+  const dateStr = selectedDate.toLocaleDateString('en-GB', {weekday:'long', day:'numeric', month:'long'});
+  document.getElementById('modalSummary').innerHTML =
+    `${dateStr} at ${selectedSlot}<br>${n} guest(s) · Total £${total}`;
+  document.getElementById('payModal').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('payModal').classList.remove('open');
+}
+
+function confirmDemo() {
+  closeModal();
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 4000);
+}
+
+// ─── Scroll animations
+const obs = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
+
+// ─── Nav hamburger
+function toggleNav() {
+  document.getElementById('navLinks').classList.toggle('open');
+}
+
+// ─── Init
+buildCalendar();
+</script>
+</body>
+</html>
