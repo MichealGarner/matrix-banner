@@ -46,18 +46,6 @@ Call trans opt: received. 12-04-26 14:32:07 REC:Loc
   ██║  ██║███████╗██║  ██║██║  ██║███████╗██████╔╝
   ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚══════╝╚═════╝
 
-  ╔══════════════════════════════════════════════════════════════╗
-  ║               !! AUTHORISED ACCESS ONLY !!                   ║
-  ╠══════════════════════════════════════════════════════════════╣
-  ║  This system is privately owned and monitored continuously.  ║
-  ║  All connections, commands, and file activity are logged.    ║
-  ║  Unauthorised access will be investigated and prosecuted     ║
-  ║  under the Computer Misuse Act 1990 (UK).                    ║
-  ║                                                              ║
-  ║       I check logs.  I hold a grudge.  You have been         ║
-  ║                    w a r n e d .                             ║
-  ╚══════════════════════════════════════════════════════════════╝
-
   ┌─[ SYSTEM STATUS ]──────────────────────────────────────────┐
   │  Host:               Herald (Debian 13)                    │
   │  Kernel:             6.12.74+deb13-amd64                   │
@@ -80,9 +68,9 @@ anon@Herald:~$
 
 - **Animated typewriter greetings** — picks a random Matrix-style message each login, personalised with `$USER`
 - **Live system stats** — kernel, IP, uptime, load average, memory, disk usage and pending `apt` updates (the update count is cached and refreshed by an apt hook, so login stays fast)
-- **Colourised ANSI output** — green Matrix palette throughout, red/amber warning box, cyan status panel headers
+- **Colourised ANSI output** — green Matrix palette throughout, a white ASCII figure, cyan status panel headers (and a red/amber warning box in the MOTD)
 - **Three-layer architecture** — SSH pre-auth banner, PAM dynamic MOTD, and animated interactive shell banner work independently and stack together
-- **Legal warning** — Computer Misuse Act 1990 (UK) compliant pre-auth and in-shell notices
+- **Legal warning** — Computer Misuse Act 1990 (UK) compliant pre-auth SSH banner and MOTD notice; the in-shell warning box in the animated banner is included but commented out by default
 - **Debian-native** — uses `/etc/update-motd.d/` PAM hooks, `/etc/profile.d/`, and `sshd_config` — no daemons, no cron jobs, no extra services
 - **Multi-host deployment** — single installer script, deploy to a fleet with a simple rsync loop or Ansible playbook
 - **Safe and reversible** — backs up every file it touches with a timestamp suffix, validates `sshd_config` before reloading, includes a full uninstaller
@@ -173,6 +161,8 @@ sudo bash matrix-banner/install.sh --no-motd
 This skips the MOTD fragment and the update-count cache, and disables an existing `10-matrix-motd` if one is already installed. The pre-auth SSH banner and the animated banner are unaffected. Run the installer again without the flag to switch the MOTD back on.
 
 Prefer to keep the MOTD but want it readable before the animation clears it? Add `sleep 1.5` on the line before `clear` in `00-matrix-banner.sh`.
+
+Note: the animated banner's own legal warning box is commented out by default, so with `--no-motd` the pre-auth SSH banner (`/etc/ssh/banner.txt`) is the only legal notice shown on SSH logins. Uncomment the box in `00-matrix-banner.sh` (see *Show the in-shell warning box* below) if you want it in the animation too.
 
 ### Multiple hosts — rsync loop
 
@@ -281,6 +271,10 @@ typewrite "your text" 0      # instant, no animation
 
 The warning references the **Computer Misuse Act 1990 (UK)**. Edit both `00-matrix-banner.sh` and `10-matrix-motd` to update for your jurisdiction.
 
+### Show the in-shell warning box
+
+The "Legal / warning block" in `00-matrix-banner.sh` is commented out by default. To show it in the animation, remove the leading `# ` from each `printf` line in that block, and from the blank `printf '\n'` that follows it.
+
 ### Skip the banner for a specific user
 
 Add this to the user's `~/.bashrc`:
@@ -316,6 +310,12 @@ A full interactive demo and project page is available at:
 ---
 
 ## Changelog
+
+### Updated animated banner
+
+- The ASCII figure is now bright white instead of dim green.
+- The in-shell legal warning box is commented out by default; the pre-auth SSH banner and the dynamic MOTD still carry the notice. Uncomment it in `00-matrix-banner.sh` to show it in the animation.
+- Fixed the SYSTEM STATUS panel's top and bottom borders, which were one character narrower than its rows.
 
 ### Optional animated-banner-only install
 
