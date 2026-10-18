@@ -162,6 +162,18 @@ The installer will:
 5. Validate `sshd_config` before reloading the SSH daemon
 6. Clear `/etc/motd` so the dynamic MOTD is used instead
 
+#### Animated banner only (`--no-motd`)
+
+The dynamic MOTD (layer 2) and the animated banner (layer 3) show the same content. On an interactive login the MOTD is printed first, then the animated banner clears the screen and draws it all again, so you briefly see the hostname, warning box and status panel twice. If you'd rather only see the animation, install with:
+
+```bash
+sudo bash matrix-banner/install.sh --no-motd
+```
+
+This skips the MOTD fragment and the update-count cache, and disables an existing `10-matrix-motd` if one is already installed. The pre-auth SSH banner and the animated banner are unaffected. Run the installer again without the flag to switch the MOTD back on.
+
+Prefer to keep the MOTD but want it readable before the animation clears it? Add `sleep 1.5` on the line before `clear` in `00-matrix-banner.sh`.
+
 ### Multiple hosts — rsync loop
 
 ```bash
@@ -304,6 +316,10 @@ A full interactive demo and project page is available at:
 ---
 
 ## Changelog
+
+### Optional animated-banner-only install
+
+- New `install.sh --no-motd` option for hosts where the dynamic MOTD and the animated banner duplicate each other on interactive logins. It skips the MOTD fragment and the update-count cache, and disables an already-installed `10-matrix-motd`. The default behaviour is unchanged.
 
 ### Faster login (update-count cache)
 
