@@ -67,7 +67,7 @@ anon@Herald:~$
 ## Features
 
 - **Animated typewriter greetings** — picks a random Matrix-style message each login, personalised with `$USER`
-- **Live system stats** — kernel, IP, uptime, load average, memory, disk usage and pending `apt` updates (the update count is cached and refreshed by an apt hook, so login stays fast)
+- **Live system stats** — kernel, every IPv4 address (one row per interface), uptime, load average, memory, disk usage and pending `apt` updates (the update count is cached and refreshed by an apt hook, so login stays fast)
 - **Colourised ANSI output** — green Matrix palette throughout, a white ASCII figure, cyan status panel headers (and a red/amber warning box in the MOTD)
 - **Three-layer architecture** — SSH pre-auth banner, PAM dynamic MOTD, and animated interactive shell banner work independently and stack together
 - **Legal warning** — Computer Misuse Act 1990 (UK) compliant pre-auth SSH banner and MOTD notice; the in-shell warning box in the animated banner is included but commented out by default
@@ -257,6 +257,17 @@ figlet -f slant  "$HOSTNAME"    # default used here
 
 Extra fonts are available in the `figlet-fonts` and `figlet-fonts-extra` packages, or from [figlet.org](http://www.figlet.org/fontdb.cgi).
 
+### Change which IP addresses are shown
+
+The status panel lists every global IPv4 address on interfaces that are up, one row per interface, for example:
+
+```
+  │  IP Address:        10.10.0.2/24 (enp1s0)                   │
+  │                     192.168.11.20/24 (ens1)                 │
+```
+
+Loopback, link-local and IPv6 addresses are not shown. Docker, bridge, veth, libvirt and Kubernetes CNI interfaces (`docker*`, `br-*`, `veth*`, `virbr*`, `cni*`, `flannel*`, `cali*`, `kube*`) are skipped, and the list is capped at six rows with a `(+N more)` line after that. To change this, edit `MAX_IP_ROWS` or the `case` list of skipped interface names near the top of `00-matrix-banner.sh`. The `none` row appears when no address is found.
+
 ### Adjust animation speed
 
 Change the `delay` argument in `typewrite` calls. Default is `0.04` seconds per character:
@@ -310,6 +321,11 @@ A full interactive demo and project page is available at:
 ---
 
 ## Changelog
+
+### Per-interface IP addresses
+
+- The IP Address row now lists every global IPv4 address on interfaces that are up, one row per interface with its prefix length and interface name, instead of only the first address from `hostname -I`. This suits multi-homed hosts such as a lab server with separate management and lab interfaces.
+- Docker, bridge, veth, libvirt and Kubernetes CNI interfaces are skipped, the list is capped at six rows, and `none` is shown when there is no address.
 
 ### Updated animated banner
 
