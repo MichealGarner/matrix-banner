@@ -315,7 +315,7 @@ A full interactive demo and project page is available at:
 
 - The ASCII figure is now bright white instead of dim green.
 - The in-shell legal warning box is commented out by default; the pre-auth SSH banner and the dynamic MOTD still carry the notice. Uncomment it in `00-matrix-banner.sh` to show it in the animation.
-- Fixed the SYSTEM STATUS panel's top and bottom borders, which were one character narrower than its rows.
+- Fixed the SYSTEM STATUS panel's top and bottom borders, which were one character narrower than its rows, using continuous `─` lines so no stray `-` shows in the border.
 
 ### Optional animated-banner-only install
 
