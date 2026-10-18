@@ -79,7 +79,7 @@ anon@Herald:~$
 ## Features
 
 - **Animated typewriter greetings** — picks a random Matrix-style message each login, personalised with `$USER`
-- **Live system stats** — kernel, IP, uptime, load average, memory, disk usage and pending `apt` updates pulled fresh at every login
+- **Live system stats** — kernel, IP, uptime, load average, memory, disk usage and pending `apt` updates (the update count is cached and refreshed by an apt hook, so login stays fast)
 - **Colourised ANSI output** — green Matrix palette throughout, red/amber warning box, cyan status panel headers
 - **Three-layer architecture** — SSH pre-auth banner, PAM dynamic MOTD, and animated interactive shell banner work independently and stack together
 - **Legal warning** — Computer Misuse Act 1990 (UK) compliant pre-auth and in-shell notices
@@ -156,9 +156,11 @@ The installer will:
 
 1. Offer to install `figlet` if not present
 2. Disable any clashing default Debian MOTD scripts
-3. Back up any existing files it replaces (timestamped `.bak` files)
-4. Validate `sshd_config` before reloading the SSH daemon
-5. Clear `/etc/motd` so the dynamic MOTD is used instead
+3. Back up any existing files it replaces (timestamped `.bak` files in `/var/backups/matrix-banner/`)
+   — never next to the originals, because `run-parts` would execute a `.bak` copy left in `/etc/update-motd.d/`
+4. Install a small update-count cache (`matrix-update-cache` plus an apt hook) so login never has to run `apt`
+5. Validate `sshd_config` before reloading the SSH daemon
+6. Clear `/etc/motd` so the dynamic MOTD is used instead
 
 ### Multiple hosts — rsync loop
 
@@ -204,7 +206,14 @@ matrix-banner/
 ├── install.sh                            ← Run as root to install
 ├── uninstall.sh                          ← Removes all installed files
 ├── README.md
+├── usr/
+│   └── local/
+│       └── sbin/
+│           └── matrix-update-cache       ← Refreshes the pending-update count (run by apt hook)
 └── etc/
+    ├── apt/
+    │   └── apt.conf.d/
+    │       └── 99matrix-banner           ← apt hook that runs the cache refresher
     ├── profile.d/
     │   └── 00-matrix-banner.sh           ← Animated shell banner
     ├── update-motd.d/
@@ -291,6 +300,16 @@ This removes all installed files, re-enables any default Debian MOTD scripts tha
 A full interactive demo and project page is available at:
 
 **[michealgarner.github.io/matrix-banner](https://michealgarner.github.io/matrix-banner/)**
+
+---
+
+## Changelog
+
+### Faster login (update-count cache)
+
+- **Fixed a slow login (~12 s on a Raspberry Pi 3).** `10-matrix-motd` used to run `apt-get --just-print upgrade` twice on every login. The counts are now read from `/var/cache/matrix-banner-updates`, which `matrix-update-cache` refreshes from an apt hook after every `apt update` / package change.
+- **Fixed backups being executed.** The installer used to leave `10-matrix-motd.bak.*` next to the real script in `/etc/update-motd.d/`; because it kept its executable bit, `run-parts` ran the old slow script as well. Backups now go to `/var/backups/matrix-banner/` (non-executable), and re-running the installer moves any stale copies out of `update-motd.d`.
+- Fixed `integer expression expected` in the MOTD when the failed-login count was `0` (`grep -c ... || echo 0` printed `0` twice).
 
 ---
 
